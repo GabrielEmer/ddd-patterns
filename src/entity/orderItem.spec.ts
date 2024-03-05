@@ -34,6 +34,6 @@ describe("OrderItem unit tests", () => {
 
   it("should return total price when have more than one", () => {
     const orderItem = new OrderItem("1", "1", "Item 1", 10, 2);
-    expect(orderItem.totalPrice).toBe(20);
+    expect(orderItem.totalPrice()).toBe(20);
   })
 })

@@ -37,7 +37,7 @@ export default class OrderItem {
     return this._price;
   }
 
-  get totalPrice(): number {
+  totalPrice(): number {
     return this._price * this._quantity;
   }
 }
