@@ -4,7 +4,7 @@ import OrderItemModel from "./order-item.model";
 
 @Table({ 
   tableName: "orders", 
-  timestamps: false 
+  timestamps: false,
 })
 export default class OrderModel extends Model{
   
@@ -14,7 +14,7 @@ export default class OrderModel extends Model{
   
   @ForeignKey(() => CustomerModel)
   @Column({allowNull: false})
-  declare customer_Id: string;
+  declare customer_id: string;
 
   @BelongsTo(() => CustomerModel)
   declare customer: CustomerModel;
