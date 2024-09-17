@@ -11,6 +11,7 @@ import OrderItem from "../../domain/entity/orderItem";
 import Product from "../../domain/entity/product";
 import ProductRepository from "./product.repository";
 import OrderRepository from "./order.repository";
+import { or } from "sequelize";
 
 describe("Order repository test", () => {
   let sequelize: Sequelize;
@@ -87,10 +88,15 @@ describe("Order repository test", () => {
 
     const orderRepository = new OrderRepository();
     await orderRepository.create(order);
+
+    order.addItem(new OrderItem("2", product.id, product.name, product.price, 1));
+    await orderRepository.update(order);
+
     const orderModel = await OrderModel.findOne({
       where: { id: order.id },
       include: ["items"],
     });
+
     expect(orderModel.toJSON()).toStrictEqual({
       id: "123",
       customer_id: "123",
@@ -101,6 +107,14 @@ describe("Order repository test", () => {
           name: "Product 1",
           price: 10,
           quantity: 2,
+          order_id: "123",
+          product_id: "123",
+        },
+        {
+          id: "2",
+          name: "Product 1",
+          price: 10,
+          quantity: 1,
           order_id: "123",
           product_id: "123",
         },
