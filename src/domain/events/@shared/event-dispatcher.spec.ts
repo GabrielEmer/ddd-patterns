@@ -3,8 +3,8 @@ import Customer from "../../entity/customer";
 import CustomerAddressUpdatedEvent from "../customer/customer-address-updated.event";
 import CustomerCreatedEvent from "../customer/customer-created.event";
 import PrintLogWhenCutomerAddresIsChangedEventHandler from "../customer/handler/print-log-when-cutomer-addres-is-changed.handler";
-import SendEmailWhenCustomerIsCreatedEventHandler from "../customer/handler/send-email-when-customer-is-created.handler";
-import SendToFinanceWhenCustomerIsCreatedEventHandler from "../customer/handler/send-to-finance-when-customer-is-created.handler";
+import SendConsoleLog1EventHandler from "../customer/handler/send-console-log-1-handler";
+import SendConsoleLog2EventHandler from "../customer/handler/send-console-log-2-handler";
 import SendEmailWhenProductIsCreatedEventHandler from "../product/handler/send-email-when-product-is-created.event.handler";
 import ProductCreatedEvent from "../product/product-created.event";
 import EventDispatcher from "./event-dispatcher";
@@ -68,8 +68,8 @@ describe("Domain Events unit tests", () => {
 
   it("should notify when customer is created", () => {
     const eventDispatcher = new EventDispatcher();
-    const sendEmailEventHandler = new SendEmailWhenCustomerIsCreatedEventHandler();
-    const sendToFinanceEventHandler = new SendToFinanceWhenCustomerIsCreatedEventHandler();
+    const sendEmailEventHandler = new SendConsoleLog1EventHandler();
+    const sendToFinanceEventHandler = new SendConsoleLog2EventHandler();
     jest.spyOn(sendEmailEventHandler, "handle");
     jest.spyOn(sendToFinanceEventHandler, "handle");
 
